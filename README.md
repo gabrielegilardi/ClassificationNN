@@ -92,4 +92,4 @@ lambda = 0.0
 
 These values have been set after running cases changing: the number of hidden layers, the number of nodes in the hidden layers, the learning rate, the coefficient in the learning rate strategy, the regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the parameters. In particular, increasing the number of hidden layers/nodes or using regularization did not have much effects on the final result.
 
-Figure 1 shows the cost function for the three datasets, while Figure 2 shows the accuracy for the three datasets. 
+The resulting cost function and accuracy for the three datasets are [here](./Iris_Results.bmp).
