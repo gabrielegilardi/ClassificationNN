@@ -45,20 +45,21 @@ eta = 2;
 etaCoeff = 0.75;
 lambda = 0;    
  
-% Initialize hidden/output layers
-L = length(nL);
+% Initialize the nodes in the hidden/output layers
 NNs = struct([]);
+L = length(nL);                                 % Number of layers
 for i = 2:L
-    nNeu = nL(i);           % Number of nodes 
-    nInp = nL(i-1);         % Number of inputs 
-    NNs(i).B  = randn(nNeu,1);                          % Biases
-    NNs(i).W  = (1/sqrt(nInp))*randn(nNeu,nInp);        % Weights
-    NNs(i).A  = zeros(nNeu,1);                          % Activations
-    NNs(i).Z  = zeros(nNeu,1);                          % Weighted inputs 
-    NNs(i).D  = zeros(nNeu,1);                          % Delta errors
+    nNeu = nL(i);                               % Number of nodes 
+    nInp = nL(i-1);                             % Number of inputs 
+    NNs(i).B = randn(nNeu,1);                   % Biases
+    NNs(i).W = (1/sqrt(nInp))*randn(nNeu,nInp); % Weights
+    NNs(i).A = zeros(nNeu,1);                   % Activations
+    NNs(i).Z = zeros(nNeu,1);                   % Weighted inputs 
+    NNs(i).D = zeros(nNeu,1);                   % Delta errors
 end
   
-% Initialize cost function and accuracy vectors
+% Initialize cost function and accuracy vectors for training, validation,
+% and test
 costTR = zeros(maxEpoch,1);
 costVA = zeros(maxEpoch,1);
 costTE = zeros(maxEpoch,1);
@@ -66,28 +67,31 @@ accTR = zeros(maxEpoch,1);
 accVA = zeros(maxEpoch,1);
 accTE = zeros(maxEpoch,1);
 
-% Read input data and build the input and output TR/VA/TE datasets
+% Read input data and build the input and output datasets for training,
+% validation, and test
 [InTR,OutTR,InVA,OutVA,InTE,OutTE] = ReadData(name,split,nL);
 nTR = size(InTR,1);     % Number of training data
 nVA = size(InVA,1);     % Number of validation data
 nTE = size(InTE,1);     % Number of test data
   
 % Main loop
-df = fix(maxEpoch/10);      % Print every 10 iterations
+df = fix(maxEpoch/10);      % Step for printing and change the learning
+                            % rate (10 = every 10% of the max. epoch)
 for epoch = 1:maxEpoch
   
     % Learning rate
     if (rem(epoch,df) == 0)
         eta = etaCoeff*eta;         % Correct the learning rate
-        fprintf('\n epoch = %d',epoch)
+        fprintf('\n epoch = %d, eta = %f',epoch,eta)    % Print status
     end
 
-    % Initialize the derivatives of the cost function
+    % Initialize the derivative of the cost function for the nodes in the
+    % hidden/output layers
     for i = 2:L
-        nNeu = nL(i);   
-        nInp = nL(i-1);  
-        NNs(i).dB = zeros(nNeu,1);        % Derivatives wrt biases
-        NNs(i).dW = zeros(nNeu,nInp);     % Derivatives wrt weights
+        nNeu = nL(i);                   % Number of nodes
+        nInp = nL(i-1);                 % Number of inputs
+        NNs(i).dB = zeros(nNeu,1);      % Derivatives wrt biases
+        NNs(i).dW = zeros(nNeu,nInp);   % Derivatives wrt weights
     end
 
     % Loop over all training data

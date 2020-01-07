@@ -2,6 +2,8 @@
 % Read the data from a text file and return the input and output for 
 % the training, validation, and test datasets.
 
+% Data must be organize as ??????
+
 function [InTR,OutTR,InVA,OutVA,InTE,OutTE] = ReadData(name,split,nL)
   
 Data = load(name);
@@ -20,42 +22,42 @@ for i = 1:nrd
 end
   
 % Build the training dataset
-n  = split(1);      % Number of elements in the training dataset
+n  = split(1);      % Number of elements
 is = 1;
 ie = is+n-1;
-InTR = zeros(n*nClas,ncd);
-OutTR = zeros(n*nClas,nClas);
+InTR = zeros(n*nClas,ncd);      % Initialize input vector/matrix
+OutTR = zeros(n*nClas,nClas);   % Initialize output matrix
 for i = 1:nClas
     k = (i-1)*nelClas;
     j = (i-1)*n;
-    InTR(j+1:i*n,:) = Data(k+is:k+ie,:);
-    OutTR(j+1:i*n,i) = 1.0;     % Class membership is specified by 1
+    InTR(j+1:i*n,:) = Data(k+is:k+ie,:);    % Copy input values
+    OutTR(j+1:i*n,i) = 1.0; % Class membership is specified by a value of 1
 end
 
 % Build the validation dataset
-n  = split(2);      % Number of elements in the validation dataset
+n  = split(2);      % Number of elements
 is = ie+1;
 ie = is+n-1;
-InVA = zeros(n*nClas,ncd);
-OutVA = zeros(n*nClas,nClas);
+InVA = zeros(n*nClas,ncd);      % Initialize input vector/matrix
+OutVA = zeros(n*nClas,nClas);   % Initialize output matrix
 for i = 1:nClas
     k = (i-1)*nelClas;
     j = (i-1)*n;
-    InVA(j+1:i*n,:) = Data(k+is:k+ie,:);
-    OutVA(j+1:i*n,i) = 1.0;     % Class membership is specified by 1
+    InVA(j+1:i*n,:) = Data(k+is:k+ie,:);    % Copy input values
+    OutVA(j+1:i*n,i) = 1.0; % Class membership is specified by a value of 1
 end
   
 % Build the test dataset
-n  = split(3);      % Number of elements in the test dataset
+n  = split(3);      % Number of elements
 is = ie+1;
 ie = is+n-1;
-InTE = zeros(n*nClas,ncd);
-OutTE = zeros(n*nClas,nClas);
+InTE = zeros(n*nClas,ncd);      % Initialize input vector/matrix
+OutTE = zeros(n*nClas,nClas);   % Initialize output matrix
 for i = 1:nClas
     k = (i-1)*nelClas;
     j = (i-1)*n;
-    InTE(j+1:i*n,:) = Data(k+is:k+ie,:);
-    OutTE(j+1:i*n,i) = 1.0;     % Class membership is specified by 1
+    InTE(j+1:i*n,:) = Data(k+is:k+ie,:);    % Copy input values
+    OutTE(j+1:i*n,i) = 1.0; % Class membership is specified by a value of 1
 end
 
 % End of function
