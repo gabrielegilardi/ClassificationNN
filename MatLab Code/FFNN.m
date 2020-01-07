@@ -40,7 +40,7 @@ rng(0);   % Used to generate the same sequence of random numbers
 nL = [4 5 3];       
 name = 'IrisSet.txt';
 split = [34 8 8];   
-maxEpoch = 100;     
+maxEpoch = 500;     
 eta = 2;          
 etaCoeff = 0.75;
 lambda = 0;    
