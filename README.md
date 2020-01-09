@@ -39,12 +39,12 @@ The code has been written in Matlab (basic version with no extra toolboxes) and 
 
 |Main Variables|Use|
 |:---------------------|:------|
-|NNs|Structure with the main data associated with each layer. The components are: W=weight matrix, B=bias vector, A=activation vector, Z=weighted input vector, D=delta error vector, dB=derivatives of the basic cost function wrt the biases, dW=derivatives of the basic cost function wrt the weights.
-|costTR,costVA,costTE|Cost function of the training/validation/test datasets|
-|accTR,accVA,accTE|Accuracy of the training/validation/test datasets|
-|InTR,InVA,InTE|Training/validation/test datasets (inputs)|
-|OutTR,OutVA,OutTE|Training/validation/test datasets (desired outputs)|
-|ResTR,ResVA,ResTE|Training/validation/test results (actual outputs)|
+|NNs|Array of structures with the data associated with each layer. The components are: W = weight matrix, B = bias vector, Z = weighted input vector, A = activation vector, D = delta error vector, dB = derivatives of the basic cost function wrt the biases, dW = derivatives of the basic cost function wrt the weights.
+|costTR,costVA,costTE|Cost function of the training, validation, and test datasets|
+|accTR,accVA,accTE|Accuracy of the training, validation, and test datasets|
+|InTR,InVA,InTE|Input of the training, validation, and test datasets|
+|OutTR,OutVA,OutTE|Desired output of the training, validation, and test datasets|
+|ResTR,ResVA,ResTE|Actual output of the training, validation, and test datasets|
 
 ### Input information
 
