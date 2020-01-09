@@ -1,6 +1,6 @@
 # Feed-Forward Neural Network (FFNN)
 
-The code has been written in Octave (basic version with no extra packages) and tested on version 4.2.1 for Windows 7-64 bit, and on version 4.0.0 for Lubuntu 16.01.01 (installed on Oracle Virtual Box under Windows 7).
+The code has been written in Matlab (basic version with no extra toolboxes) and tested on version 8.3 (R2014a).
 
 #### FFNN characteristics
 
