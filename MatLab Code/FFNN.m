@@ -140,14 +140,14 @@ for epoch = 1:maxEpoch
     costTE(epoch) = CostFunctionSet(InTE,OutTE,NNs) + costR;   
     
     % Determine the results for all datasets
-    ResTR = Results(InTR,NNs,nL);
-    ResVA = Results(InVA,NNs,nL);
-    ResTE = Results(InTE,NNs,nL);
+    [ResTR,accTR(epoch)] = Results(InTR,OutTR,NNs,nL);
+    [ResVA,accVA(epoch)] = Results(InVA,OutVA,NNs,nL);
+    [ResTE,accTE(epoch)] = Results(InTE,OutTE,NNs,nL);
     
     % Determine the accuracy for all datasets
-    accTR(epoch) = Accuracy(ResTR,OutTR)/nTR;
-    accVA(epoch) = Accuracy(ResVA,OutVA)/nVA;
-    accTE(epoch) = Accuracy(ResTE,OutTE)/nTE;
+%    accTR(epoch) = Accuracy(ResTR,OutTR)/nTR;
+%    accVA(epoch) = Accuracy(ResVA,OutVA)/nVA;
+%    accTE(epoch) = Accuracy(ResTE,OutTE)/nTE;
 
 end
 

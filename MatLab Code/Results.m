@@ -1,12 +1,13 @@
 
-% Determine the actual output activation vector for a full dataset
+% Determine the actual output activation vector and the number of correct
+% outputs for a full dataset
 
-function [Res] = Results(In,NNs,nL)
+function [Res,nHits] = Results(In,Out,NNs,nL)
 
 nr = size(In,1);
 L = length(NNs);
 Res = zeros(nr,nL(L));
-  
+% Actual output
 for m = 1:nr
     A = In(m,:)';
     for i = 2:L
@@ -15,5 +16,10 @@ for m = 1:nr
     end
     Res(m,:) = A';
 end
+% Accuracy
+[~,idxS] = max(Res,[],2);
+[~,idxO] = max(Out,[],2);
+a( idxS == idxO ) = 1;
+nHits = sum(a)/nr;
 
 % End of function
