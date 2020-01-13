@@ -1,6 +1,6 @@
 # Feed-Forward Neural Network (FFNN)
 
-The code has been written in Octave (basic version with no extra packages) and tested on version 4.2.1 for Windows 7-64 bit, and on version 4.0.0 for Lubuntu 16.01.01 (installed on Oracle Virtual Box under Windows 7).
+The code has been written in Matlab (basic version with no extra toolboxes) and tested on version 8.3 (R2014a).
 
 #### FFNN characteristics
 
@@ -39,12 +39,12 @@ The code has been written in Octave (basic version with no extra packages) and t
 
 |Main Variables|Use|
 |:---------------------|:------|
-|NNs|Structure with the main data associated with each layer. The components are: W=weight matrix, B=bias vector, A=activation vector, Z=weighted input vector, D=delta error vector, dB=derivatives of the basic cost function wrt the biases, dW=derivatives of the basic cost function wrt the weights.
-|costTR,costVA,costTE|Cost function of the training/validation/test datasets|
-|accTR,accVA,accTE|Accuracy of the training/validation/test datasets|
-|InTR,InVA,InTE|Training/validation/test datasets (inputs)|
-|OutTR,OutVA,OutTE|Training/validation/test datasets (desired outputs)|
-|ResTR,ResVA,ResTE|Training/validation/test results (actual outputs)|
+|NNs|Array of structures with the data associated with each layer. The components are: W = weight matrix, B = bias vector, Z = weighted input vector, A = activation vector, D = delta error vector, dB = derivatives of the basic cost function wrt the biases, dW = derivatives of the basic cost function wrt the weights.
+|costTR,costVA,costTE|Cost function of the training, validation, and test datasets|
+|accTR,accVA,accTE|Accuracy of the training, validation, and test datasets|
+|InTR,InVA,InTE|Input of the training, validation, and test datasets|
+|OutTR,OutVA,OutTE|Desired output of the training, validation, and test datasets|
+|ResTR,ResVA,ResTE|Actual output of the training, validation, and test datasets|
 
 ### Input information
 
