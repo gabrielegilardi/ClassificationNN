@@ -36,7 +36,7 @@
 
 rng(0);   % Used to generate the same sequence of random numbers
 
-% Example: Iris dataset
+% Parameters (Example: Iris dataset)
 nL = [4 5 3];       
 name = 'IrisSet.txt';
 split = [34 8 8];   
@@ -45,7 +45,10 @@ eta = 2;
 etaCoeff = 0.75;
 lambda = 0;    
  
-% Initialize the nodes in the hidden/output layers
+% Initialize the quantities in the hidden/output layers
+
+% The first structure in the array is always empty except for the activation
+% vector A that corresponds to the inputs
 NNs = struct([]);
 L = length(nL);                                 % Number of layers
 for i = 2:L
@@ -53,8 +56,8 @@ for i = 2:L
     nInp = nL(i-1);                             % Number of inputs 
     NNs(i).B = randn(nNeu,1);                   % Biases
     NNs(i).W = (1/sqrt(nInp))*randn(nNeu,nInp); % Weights
-    NNs(i).A = zeros(nNeu,1);                   % Activations
     NNs(i).Z = zeros(nNeu,1);                   % Weighted inputs 
+    NNs(i).A = zeros(nNeu,1);                   % Activations
     NNs(i).D = zeros(nNeu,1);                   % Delta errors
 end
   
@@ -75,14 +78,12 @@ nVA = size(InVA,1);     % Number of validation data
 nTE = size(InTE,1);     % Number of test data
   
 % Main loop
-df = fix(maxEpoch/10);      % Step for printing and change the learning
-                            % rate (10 = every 10% of the max. epoch)
 for epoch = 1:maxEpoch
   
-    % Learning rate
-    if (rem(epoch,df) == 0)
-        eta = etaCoeff*eta;         % Correct the learning rate
-        fprintf('\n epoch = %d, eta = %f',epoch,eta)    % Print status
+    % Every 10% of the epochs change learning rate and print count
+    if (rem(epoch,fix(maxEpoch/10)) == 0)
+        eta = etaCoeff*eta;
+        fprintf('\n epoch = %d, eta = %f',epoch,eta)
     end
 
     % Initialize the derivative of the cost function for the nodes in the
@@ -130,16 +131,20 @@ for epoch = 1:maxEpoch
     % (basic + regularization term)
     costR = 0;
     for i = 2:L
+        % Regularization term
         costR = costR + lambda*sum( sum( NNs(i).W.*NNs(i).W ) )/(2*nTR);
     end
+    % Add to the basic part
     costTR(epoch) = CostFunctionSet(InTR,OutTR,NNs) + costR;   
     costVA(epoch) = CostFunctionSet(InVA,OutVA,NNs) + costR;  
     costTE(epoch) = CostFunctionSet(InTE,OutTE,NNs) + costR;   
     
-    % Determine the results and accuracy for all datasets
+    % Determine the results for all datasets
     ResTR = Results(InTR,NNs,nL);
     ResVA = Results(InVA,NNs,nL);
     ResTE = Results(InTE,NNs,nL);
+    
+    % Determine the accuracy for all datasets
     accTR(epoch) = Accuracy(ResTR,OutTR)/nTR;
     accVA(epoch) = Accuracy(ResVA,OutVA)/nVA;
     accTE(epoch) = Accuracy(ResTE,OutTE)/nTE;
