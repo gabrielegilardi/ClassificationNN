@@ -139,16 +139,11 @@ for epoch = 1:maxEpoch
     costVA(epoch) = CostFunctionSet(InVA,OutVA,NNs) + costR;  
     costTE(epoch) = CostFunctionSet(InTE,OutTE,NNs) + costR;   
     
-    % Determine the results for all datasets
+    % Output activation vector and accuracy for a dataset
     [ResTR,accTR(epoch)] = Results(InTR,OutTR,NNs,nL);
     [ResVA,accVA(epoch)] = Results(InVA,OutVA,NNs,nL);
     [ResTE,accTE(epoch)] = Results(InTE,OutTE,NNs,nL);
     
-    % Determine the accuracy for all datasets
-%    accTR(epoch) = Accuracy(ResTR,OutTR)/nTR;
-%    accVA(epoch) = Accuracy(ResVA,OutVA)/nVA;
-%    accTE(epoch) = Accuracy(ResTE,OutTE)/nTE;
-
 end
 
 fprintf('\n\n');

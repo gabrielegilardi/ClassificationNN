@@ -1,6 +1,6 @@
 
 % Return the cost function (cross-entropy) without the regularization term
-% for a full dataset.
+% for a dataset.
 
 function C = CostFunctionSet(In,Out,NNs)
 
