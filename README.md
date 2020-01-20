@@ -24,8 +24,7 @@ The code has been written in Matlab (basic version with no extra toolboxes) and 
 |f1_activation|First derivative of the sigmoid activation function|
 |CostFunction|Return the basic cost function (without the regularization term)|
 |CostFunctionSet|Return the basic cost function for a full dataset|
-|Results|Determine the actual output activation vector for a full dataset|
-|Accuracy|Determine the number of correct outputs for a full dataset|
+|Results|Determine the actual output activation vector and the accuracy for a full dataset|
 
 |Parameters|Use|
 |:---------|:------|
@@ -76,7 +75,7 @@ The Iris dataset has 3-classes (setosa, versicolor, and virginica), and the inpu
 nL = [4 5 3]
 name = 'IrisSet.txt'
 split = [34 8 8]
-maxEpoch = 1000
+maxEpoch = 500
 eta = 2.0
 etaCoeff = 0.75
 lambda = 0.0
@@ -93,3 +92,29 @@ lambda = 0.0
 These values have been set after running cases changing: the number of hidden layers, the number of nodes in the hidden layers, the learning rate, the coefficient in the learning rate strategy, the regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the parameters. In particular, increasing the number of hidden layers/nodes or using regularization did not have much effects on the final result.
 
 The resulting cost function and accuracy for the three datasets are [here](./Iris_Results.bmp).
+
+### Example: the SEED dataset
+
+The Seed dataset has 3-classes, and the input data are organized in a 210 x 7 matrix, with 70 rows for each class. The number of nodes in the input layer can assume a value from 1 to 7, while the number of nodes in the output layer must be 3 (i.e. the number of classes). The parameters used in the example are:
+
+```
+nL = [7 5 3]
+name = 'SeedSet.txt'
+split = [50 10 10]
+maxEpoch = 500
+eta = 2.0
+etaCoeff = 0.75
+lambda = 0.0
+```
+
+- Layout: 7 input nodes, one hidden layer with 5 nodes, 3 nodes in the output layer.
+
+- Input data are split with a 72/14/14 percent ratio.
+
+- Every 10% of the iterations the learning rate is reduced by 25%, starting from an initial value of 2.
+
+- No regularization is used.
+
+These values have been set after running cases changing: the number of hidden layers, the number of nodes in the hidden layers, the learning rate, the coefficient in the learning rate strategy, the regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the parameters. In particular, increasing the number of hidden layers/nodes or using regularization did not have much effects on the final result.
+
+The resulting cost function and accuracy for the three datasets are [here](./Seed_Results.bmp).
