@@ -34,3 +34,6 @@ octave-workspace
 *.pdf
 *.pptx
 *.docx
+
+# Docs folder
+Docs/

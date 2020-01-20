@@ -34,17 +34,41 @@
 %   data file.
 % - nL(end) defines the number of classes.
 
+clear
+
 rng(0);   % Used to generate the same sequence of random numbers
 
-% Parameters (Example: Iris dataset)
-nL = [4 5 3];       
-name = 'IrisSet.txt';
-split = [34 8 8];   
-maxEpoch = 500;     
-eta = 2;          
-etaCoeff = 0.75;
-lambda = 0;    
- 
+example = 'seeds';
+
+switch example
+
+    % Parameters (Example: iris dataset)
+    case 'iris'
+        nL = [4 5 3];       
+        name = 'IrisSet.txt';
+        split = [34 8 8];   
+        maxEpoch = 500;     
+        eta = 2;          
+        etaCoeff = 0.75;
+        lambda = 0;    
+
+    % Parameters (Example: seeds dataset)
+    case 'seeds'
+        nL = [7 5 3];       
+        name = 'SeedSet.txt';
+        split = [50 10 10];   
+        maxEpoch = 500;     
+        eta = 2;          
+        etaCoeff = 0.75;
+        lambda = 0;    
+        
+    otherwise
+        disp('No example specified')
+        disp(' ')
+        return
+
+end
+
 % Initialize the quantities in the hidden/output layers
 
 % The first structure in the array is always empty except for the activation
