@@ -1,7 +1,5 @@
 
-% Perform the feed-forward step
-
-% 
+% Perform the feed-forward step (eq. 25, Ch. 2)
 
 function  NNs = FeedForward(NNs)
 

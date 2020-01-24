@@ -33,6 +33,9 @@
 % - nL(1) must be equal or smaller than the number of columns in the input 
 %   data file.
 % - nL(end) defines the number of classes.
+%
+% Reference: Michael Nielsen, "Neural Networks and Deep Learning"
+%            Ch. 2 and 3, neuralnetworksanddeeplearning.com
 
 clear
 
@@ -122,7 +125,7 @@ for epoch = 1:maxEpoch
     % Loop over all training data
     for m = 1:nTR
 
-        % Feedforward step
+        % Feedforward step (eq. 25, Ch. 2)
         NNs(1).A = InTR(m,:)';   
         NNs = FeedForward(NNs);  
       
