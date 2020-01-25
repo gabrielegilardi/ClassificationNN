@@ -30,7 +30,7 @@ The code has been written in Matlab (basic version with no extra toolboxes) and 
 |nL|Row-vector defining the number of nodes|
 |name|Name of the text file with the dataset to analyze|
 |split|Row-vector defining the number of data in the training/validation/test datasets|
-|maxEpoch|Number of iterations|
+|maxEpoch|Max. number of iterations|
 |eta|Learning rate|
 |etaCoeff|Coefficient for the learning rate strategy|
 |lambda|Regularization parameter|
