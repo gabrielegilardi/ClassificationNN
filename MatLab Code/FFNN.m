@@ -41,14 +41,14 @@ clear
 
 rng(0);   % Used to generate the same sequence of random numbers
 
-example = 'iris';
+example = 'seeds';
 
 switch example
 
     % Parameters (Example: iris dataset)
     case 'iris'
         nL = [4 5 3];       
-        name = 'IrisSet.txt';
+        name = 'IrisDataset.txt';
         split = [34 8 8];   
         maxEpoch = 500;     
         eta = 2;          
@@ -58,7 +58,7 @@ switch example
     % Parameters (Example: seeds dataset)
     case 'seeds'
         nL = [7 5 3];       
-        name = 'SeedSet.txt';
+        name = 'SeedsDataset.txt';
         split = [50 10 10];   
         maxEpoch = 500;     
         eta = 2;          
@@ -129,7 +129,8 @@ for epoch = 1:maxEpoch
         NNs(1).A = InTR(m,:)';   
         NNs = FeedForward(NNs);  
       
-        % Determine delta errors for hidden/output layers
+        % Determine delta errors for hidden/output layers (eqs. BP1 and
+        % BP2, Ch. 2)
         y = OutTR(m,:)';
         gradC = (y-ones(nL(L),1))./(NNs(L).A-ones(nL(L),1)) - y./NNs(L).A;
         NNs(L).D = gradC.*f1_activation( NNs(L).Z );
@@ -138,7 +139,7 @@ for epoch = 1:maxEpoch
         end
 
         % Determine the derivatives associated with the current training 
-        % data and add them to the partial total
+        % data and add them to the partial sum (eqs. BP3 and BP4, Ch. 2)
         for i = 2:L
             NNs(i).dB = NNs(i).dB + NNs(i).D;
             for j = 1:nL(i)
@@ -148,20 +149,20 @@ for epoch = 1:maxEpoch
 
     end
     
-    % Determine the new biases/weights
+    % Determine the new biases/weights (eqs. 93 and 94, Ch. 3)
     for i = 2:L
         NNs(i).W = NNs(i).W*(1-eta*lambda/nTR) - (eta/nTR)*NNs(i).dW;
         NNs(i).B = NNs(i).B - (eta/nTR)*NNs(i).dB;
     end
 
-    % Determine the cost function for all datasets 
-    % (basic + regularization term)
+    % Determine the cost function for all datasets (eq. 85, Ch. 3)
+    
+    % Regularization contribution 
     costR = 0;
     for i = 2:L
-        % Regularization term
         costR = costR + lambda*sum( sum( NNs(i).W.*NNs(i).W ) )/(2*nTR);
     end
-    % Add to the basic part
+    % Add to the basic cost function
     costTR(epoch) = CostFunction(InTR,OutTR,NNs) + costR;   
     costVA(epoch) = CostFunction(InVA,OutVA,NNs) + costR;  
     costTE(epoch) = CostFunction(InTE,OutTE,NNs) + costR;   

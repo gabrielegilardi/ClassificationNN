@@ -1,5 +1,5 @@
 
-% First derivative of the sigmoid activation function
+% First derivative of the sigmoid activation function (Ch. 3)
 
 function A = f1_activation(Z)
 
