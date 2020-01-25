@@ -41,7 +41,7 @@ clear
 
 rng(0);   % Used to generate the same sequence of random numbers
 
-example = 'seeds';
+example = 'iris';
 
 switch example
 
@@ -162,9 +162,9 @@ for epoch = 1:maxEpoch
         costR = costR + lambda*sum( sum( NNs(i).W.*NNs(i).W ) )/(2*nTR);
     end
     % Add to the basic part
-    costTR(epoch) = CostFunctionSet(InTR,OutTR,NNs) + costR;   
-    costVA(epoch) = CostFunctionSet(InVA,OutVA,NNs) + costR;  
-    costTE(epoch) = CostFunctionSet(InTE,OutTE,NNs) + costR;   
+    costTR(epoch) = CostFunction(InTR,OutTR,NNs) + costR;   
+    costVA(epoch) = CostFunction(InVA,OutVA,NNs) + costR;  
+    costTE(epoch) = CostFunction(InTE,OutTE,NNs) + costR;   
     
     % Output activation vector and accuracy for a dataset
     [ResTR,accTR(epoch)] = Results(InTR,OutTR,NNs,nL);
