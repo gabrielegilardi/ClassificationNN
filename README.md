@@ -66,9 +66,9 @@ The code has been written in Matlab (basic version with no extra toolboxes) and 
 
 - Matrixes `ResTR`, `ResVA`, and `ResTE`, contain the activation value of all nodes in the output layer at the last iteration.
 
-### Example: the Iris dataset
+### Example 1: the Iris dataset
 
-The Iris dataset has 3-classes (setosa, versicolor, and virginica), and the input data are organized in a 150 x 4 matrix, with 50 rows for each class. The number of nodes in the input layer can assume any value from 1 to 4, while the number of nodes in the output layer must be 3 (i.e. the number of classes). The parameters used in the example are:
+The Iris dataset has 3-classes (setosa, versicolor, and virginica), and the input data are organized in a 150 x 4 matrix, with 50 rows for each class. The number of nodes in the input layer can assume any value from 1 to 4, while the number of nodes in the output layer (i.e. the number of classes) must be 3. The parameters used in the example are:
 
 ```
 nL = [4 5 3]
@@ -92,9 +92,9 @@ These values have been set after a quick tuning of the following hyper-parameter
 
 The resulting cost function and accuracy for the three datasets are [here](./Results_IrisDataset.bmp).
 
-### Example: the Wheat Seeds dataset
+### Example 2: the Wheat Seeds dataset
 
-The Wheat Seeds dataset has 3-classes, and the input data are organized in a 210 x 7 matrix, with 70 rows for each class. The number of nodes in the input layer can assume any value from 1 to 7, while the number of nodes in the output layer must be 3 (i.e. the number of classes). The parameters used in the example are:
+The Wheat Seeds dataset has 3-classes, and the input data are organized in a 210 x 7 matrix, with 70 rows for each class. The number of nodes in the input layer can assume any value from 1 to 7, while the number of nodes in the output layer (i.e. the number of classes) must be 3. The parameters used in the example are:
 
 ```
 nL = [7 5 3]
