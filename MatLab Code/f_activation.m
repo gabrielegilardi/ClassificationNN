@@ -1,5 +1,5 @@
 
-% Sigmoid activation function
+% Sigmoid activation function (eq. 3, Ch. 1)
 
 function  A = f_activation(Z)
 
