@@ -1,6 +1,6 @@
 
 % Determine the output activation vector and the number of correct
-% outputs (accuracy) for a dataset
+% outputs (accuracy) for a full dataset
 
 function [Res,nHits] = Results(In,Out,NNs,nL)
 

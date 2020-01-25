@@ -2,12 +2,17 @@
 % Read the data from a text file and return the input and output for 
 % the training, validation, and test datasets.
 
-% Data must be organize as ??????
+% Datasets must be organize as follow (see examples):
+% - data must be in a text file
+% - each column must represent one of the inputs
+% - values for each class must be grouped in consecutive rows
+% - the output column must be the last one or must be missing
+% - the number of observations for each class must be balanced
 
 function [InTR,OutTR,InVA,OutVA,InTE,OutTE] = ReadData(name,split,nL)
   
 Data = load(name);
-Data = Data(:,1:nL(1));       % Remove extra columns
+Data = Data(:,1:nL(1));       % Remove extra columns if necessary
 [nrd,ncd] = size(Data);
 nClas = nL(end);              % Number of classes
 nelClas = round(nrd/nClas);   % Number of elements in each class
@@ -22,7 +27,7 @@ for i = 1:nrd
 end
   
 % Build the training dataset
-n  = split(1);      % Number of elements
+n  = split(1);                  % Number of elements
 is = 1;
 ie = is+n-1;
 InTR = zeros(n*nClas,ncd);      % Initialize input vector/matrix
@@ -35,7 +40,7 @@ for i = 1:nClas
 end
 
 % Build the validation dataset
-n  = split(2);      % Number of elements
+n  = split(2);                  % Number of elements
 is = ie+1;
 ie = is+n-1;
 InVA = zeros(n*nClas,ncd);      % Initialize input vector/matrix
@@ -48,7 +53,7 @@ for i = 1:nClas
 end
   
 % Build the test dataset
-n  = split(3);      % Number of elements
+n  = split(3);                  % Number of elements
 is = ie+1;
 ie = is+n-1;
 InTE = zeros(n*nClas,ncd);      % Initialize input vector/matrix

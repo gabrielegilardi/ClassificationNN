@@ -29,11 +29,3 @@ codegen/
 
 # Octave session info
 octave-workspace
-
-# Doc files
-*.pdf
-*.pptx
-*.docx
-
-# Docs folder
-Docs/

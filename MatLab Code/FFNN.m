@@ -31,21 +31,28 @@
 % nL = [2 10 8 5]     2 inputs, 2 hidden layers with 10 and 8 nodes, 5 outputs
 %
 % - nL(1) must be equal or smaller than the number of columns in the input 
-%   data file.
+%   data file (extra columns are ignored).
 % - nL(end) defines the number of classes.
 %
-% Reference: Michael Nielsen, "Neural Networks and Deep Learning"
+% Reference: Michael Nielsen, "Neural Networks and Deep Learning", 
 %            Ch. 2 and 3, neuralnetworksanddeeplearning.com
+% Datasets: archive.ics.uci.edu/ml/machine-learning-databases/
 
 clear
 
-rng(0);   % Used to generate the same sequence of random numbers
+rng(0);     % Used to generate the same sequence of random numbers
+            % (remove/comment otherwise)
 
-example = 'seeds';
+% Examples: 
+% 'iris' = Iris dataset
+% 'seed' = Wheat Seeds dataset
+example = 'seed';
 
+% Exmples (removed the last column from the original databases)
 switch example
 
-    % Parameters (Example: iris dataset)
+    % Iris dataset
+    % archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
     case 'iris'
         nL = [4 5 3];       
         name = 'IrisDataset.txt';
@@ -55,10 +62,11 @@ switch example
         etaCoeff = 0.75;
         lambda = 0;    
 
-    % Parameters (Example: seeds dataset)
-    case 'seeds'
+    % Wheat Seeds dataset
+    % archive.ics.uci.edu/ml/machine-learning-databases/00236/seeds_dataset.txt
+    case 'seed'
         nL = [7 5 3];       
-        name = 'SeedsDataset.txt';
+        name = 'WheatSeedsDataset.txt';
         split = [50 10 10];   
         maxEpoch = 500;     
         eta = 2;          
@@ -87,18 +95,22 @@ for i = 2:L
     NNs(i).A = zeros(nNeu,1);                   % Activations
     NNs(i).D = zeros(nNeu,1);                   % Delta errors
 end
-  
-% Initialize cost function and accuracy vectors for training, validation,
-% and test
+
+% Convention:
+% TR = training
+% VA = validation
+% TE = test
+
+% Initialize cost function vectors
 costTR = zeros(maxEpoch,1);
 costVA = zeros(maxEpoch,1);
 costTE = zeros(maxEpoch,1);
+% Initialize accuracy vectors
 accTR = zeros(maxEpoch,1);
 accVA = zeros(maxEpoch,1);
 accTE = zeros(maxEpoch,1);
 
-% Read input data and build the input and output datasets for training,
-% validation, and test
+% Read input data and build the input and output datasets
 [InTR,OutTR,InVA,OutVA,InTE,OutTE] = ReadData(name,split,nL);
 nTR = size(InTR,1);     % Number of training data
 nVA = size(InVA,1);     % Number of validation data
@@ -167,7 +179,7 @@ for epoch = 1:maxEpoch
     costVA(epoch) = CostFunction(InVA,OutVA,NNs) + costR;  
     costTE(epoch) = CostFunction(InTE,OutTE,NNs) + costR;   
     
-    % Output activation vector and accuracy for a dataset
+    % Output activation vector and accuracy for a full dataset
     [ResTR,accTR(epoch)] = Results(InTR,OutTR,NNs,nL);
     [ResVA,accVA(epoch)] = Results(InVA,OutVA,NNs,nL);
     [ResTE,accTE(epoch)] = Results(InTE,OutTE,NNs,nL);
@@ -176,7 +188,7 @@ end
 
 fprintf('\n\n');
   
-% Plots results for training, validation, and test datasets
+% Plots results for the training, validation, and test dataset
 hf = figure(1); 
 set(hf,'color','white')
 tc = 1:maxEpoch;
