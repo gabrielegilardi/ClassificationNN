@@ -44,14 +44,14 @@ rng(0);     % Used to generate the same sequence of random numbers
             % (remove/comment otherwise)
 
 % Examples: 
-% 'iris' = Iris dataset
-% 'seed' = Wheat Seeds dataset
+% 1) Iris dataset = 'iris' 
+% 2) Wheat Seeds dataset = 'seed'
 example = 'seed';
 
 % Exmples (removed the last column from the original databases)
 switch example
 
-    % Iris dataset
+    % 1) Iris dataset
     % archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
     case 'iris'
         nL = [4 5 3];       
@@ -62,7 +62,7 @@ switch example
         etaCoeff = 0.75;
         lambda = 0;    
 
-    % Wheat Seeds dataset
+    % 2) Wheat Seeds dataset
     % archive.ics.uci.edu/ml/machine-learning-databases/00236/seeds_dataset.txt
     case 'seed'
         nL = [7 5 3];       
