@@ -22,8 +22,7 @@ The code has been written in Matlab (basic version with no extra toolboxes) and 
 |FeedForward|Perform the feedforward step|
 |f_activation|Sigmoid activation function|
 |f1_activation|First derivative of the sigmoid activation function|
-|CostFunction|Return the basic cost function (without the regularization term)|
-|CostFunctionSet|Return the basic cost function for a full dataset|
+|CostFunction|Return the basic cost function for a full dataset|
 |Results|Determine the actual output activation vector and the accuracy for a full dataset|
 
 |Parameters|Use|
@@ -47,19 +46,19 @@ The code has been written in Matlab (basic version with no extra toolboxes) and 
 
 ### Input information
 
-- The code works with any number of inputs/classes, as long as the dataset is organized as the Iris dataset (i.e. the data for each class are in consecutive rows) and the problem is a classification problem.
+- The code works with any number of inputs/classes as long as the dataset is organized correctly and the problem is a classification problem.
 
-- The layout of the NN system is defined in the row-vector `nL=[n1 n2 .... nL-1 nL]`, where: `n1` is the number of nodes in the input layer; `n2` to `nL-1` are the number of nodes in the hidden layers; and `nL` is the number of nodes in the output layer.
+- The layout of the neural network system is defined in the row-vector `nL=[n1 n2 .... nL-1 nL]`, where: `n1` is the number of nodes in the input layer; `n2` to `nL-1` are the number of nodes in the hidden layers; and `nL` is the number of nodes in the output layer.
 
-- Data must be in a text file (specified in parameter name), each column representing one of the inputs, and with data belonging to different classes in sequence (as in the Iris dataset). If the number of columns is larger than `n1`, then the extra column(s) are eliminated. The number of classes is defined by `nL`. The input data are mapped in the interval `[-1,+1]`.
+- Data must be in a text file (specified by parameter `name`), each column representing one of the inputs, and with data belonging to different classes in sequence (see examples). If the number of columns is larger than `n1`, then the extra column(s) are eliminated. The number of classes is defined by `nL`. The input data are mapped in the interval `[-1,+1]`.
 
-- The data partition is defined in the row-vector `split=[nTR nVA nTE]`. Any value can be used as long as the sum is not larger than the number of data in each class. The three datasets are returned in matrixes `InTR`, `InVA`, and `InTE`. Data are taken sequentially (for instance if `split=[15 5 8]` then the first 28 rows are used).
+- The data partition is defined in the row-vector `split=[nTR nVA nTE]`. Any value can be used as long as the sum is not larger than the number of data in each class. The three datasets are returned in matrixes `InTR`, `InVA`, and `InTE`. Data are taken sequentially (for instance if `split=[15 5 8]` then the first 28 rows of each class are used).
 
 - A very simple strategy is implemented to change the learning rate `eta`: at every 10% of the number of iterations, eta is recalculated as `etaCoeff` times `eta`.
 
 ### Output information
 
-- Class membership is defined by a 1 in the corresponding column of matrixes `OutTR`, `OutVA`, and `OutTE`. For the Iris example it is: `[1,0,0]` for setosa, `[0,1,0]` for versicolor, and `[0,0,1]` for virginica.
+- Class membership is defined by a 1 in the corresponding column of matrixes `OutTR`, `OutVA`, and `OutTE`. For instance, for the Iris example it is: `[1,0,0]` for setosa, `[0,1,0]` for versicolor, and `[0,0,1]` for virginica.
 
 - The cost function for the three partitions is in `costTR`, `costVA`, and `costTE`. These values are plotted versus the iterations at the end of the computation.
 
@@ -67,13 +66,13 @@ The code has been written in Matlab (basic version with no extra toolboxes) and 
 
 - Matrixes `ResTR`, `ResVA`, and `ResTE`, contain the activation value of all nodes in the output layer at the last iteration.
 
-### Example: the IRIS dataset
+### Example: the Iris dataset
 
-The Iris dataset has 3-classes (setosa, versicolor, and virginica), and the input data are organized in a 150 x 4 matrix, with 50 rows for each class. The number of nodes in the input layer can assume a value from 1 to 4, while the number of nodes in the output layer must be 3 (i.e. the number of classes). The parameters used in the example are:
+The Iris dataset has 3-classes (setosa, versicolor, and virginica), and the input data are organized in a 150 x 4 matrix, with 50 rows for each class. The number of nodes in the input layer can assume any value from 1 to 4, while the number of nodes in the output layer must be 3 (i.e. the number of classes). The parameters used in the example are:
 
 ```
 nL = [4 5 3]
-name = 'IrisSet.txt'
+name = 'IrisDataset.txt'
 split = [34 8 8]
 maxEpoch = 500
 eta = 2.0
@@ -89,17 +88,17 @@ lambda = 0.0
 
 - No regularization is used.
 
-These values have been set after running cases changing: the number of hidden layers, the number of nodes in the hidden layers, the learning rate, the coefficient in the learning rate strategy, the regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the parameters. In particular, increasing the number of hidden layers/nodes or using regularization did not have much effects on the final result.
+These values have been set after a quick tuning of the following hyper-parameters: number of hidden layers, number of nodes in the hidden layers, learning rate, coefficient of the learning rate strategy, regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the hyper-parameters.
 
-The resulting cost function and accuracy for the three datasets are [here](./Iris_Results.bmp).
+The resulting cost function and accuracy for the three datasets are [here](./Results_IrisDataset.bmp).
 
-### Example: the SEED dataset
+### Example: the Wheat Seeds dataset
 
-The Seed dataset has 3-classes, and the input data are organized in a 210 x 7 matrix, with 70 rows for each class. The number of nodes in the input layer can assume a value from 1 to 7, while the number of nodes in the output layer must be 3 (i.e. the number of classes). The parameters used in the example are:
+The Wheat Seeds dataset has 3-classes, and the input data are organized in a 210 x 7 matrix, with 70 rows for each class. The number of nodes in the input layer can assume any value from 1 to 7, while the number of nodes in the output layer must be 3 (i.e. the number of classes). The parameters used in the example are:
 
 ```
 nL = [7 5 3]
-name = 'SeedSet.txt'
+name = 'WheatSeedsDataset.txt'
 split = [50 10 10]
 maxEpoch = 500
 eta = 2.0
@@ -115,6 +114,6 @@ lambda = 0.0
 
 - No regularization is used.
 
-These values have been set after running cases changing: the number of hidden layers, the number of nodes in the hidden layers, the learning rate, the coefficient in the learning rate strategy, the regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the parameters. In particular, increasing the number of hidden layers/nodes or using regularization did not have much effects on the final result.
+These values have been set after a quick tuning of the following hyper-parameters: number of hidden layers, number of nodes in the hidden layers, learning rate, coefficient of the learning rate strategy, regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the hyper-parameters.
 
-The resulting cost function and accuracy for the three datasets are [here](./Seed_Results.bmp).
+The resulting cost function and accuracy for the three datasets are [here](./Results_WheatSeedsDataset.bmp).
