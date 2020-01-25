@@ -90,7 +90,7 @@ lambda = 0.0
 
 These values have been set after a quick tuning of the following hyper-parameters: number of hidden layers, number of nodes in the hidden layers, learning rate, coefficient of the learning rate strategy, regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the hyper-parameters.
 
-The resulting cost function and accuracy for the three datasets are [here](./MatLab Code/Results_IrisDataset.bmp).
+The resulting cost function and accuracy for the three datasets are [here](./MatLab_Code/Results_IrisDataset.bmp).
 
 ### Example 2: the Wheat Seeds dataset
 
@@ -116,4 +116,4 @@ lambda = 0.0
 
 These values have been set after a quick tuning of the following hyper-parameters: number of hidden layers, number of nodes in the hidden layers, learning rate, coefficient of the learning rate strategy, regularization parameter. The cost function and accuracy of the training/validation datasets were used to evaluate the results and set the hyper-parameters.
 
-The resulting cost function and accuracy for the three datasets are [here](./MatLab Code/Results_WheatSeedsDataset.bmp).
+The resulting cost function and accuracy for the three datasets are [here](./MatLab_Code/Results_WheatSeedsDataset.bmp).
