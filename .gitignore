@@ -29,3 +29,10 @@ codegen/
 
 # Octave session info
 octave-workspace
+
+# VSC configuration folder
+.vscode/
+
+# Python 
+Python_Code/__pycache__
+Python_Code/
