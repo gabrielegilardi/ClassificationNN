@@ -1,3 +1,4 @@
+% (c) 2020 Gabriele Gilardi
 
 % First derivative of the sigmoid activation function (Ch. 3)
 
