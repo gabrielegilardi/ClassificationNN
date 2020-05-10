@@ -1,4 +1,4 @@
-% (c) 2020 Gabriele Gilardi
+% Copyright (c) 2020 Gabriele Gilardi
 
 % Return the cost function (cross-entropy) without the regularization term
 % for a full dataset (eqs. 57 and 63, Ch. 3).

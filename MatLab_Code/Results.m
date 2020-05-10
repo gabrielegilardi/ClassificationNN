@@ -1,4 +1,4 @@
-% (c) 2020 Gabriele Gilardi
+% Copyright (c) 2020 Gabriele Gilardi
 
 % Determine the output activation vector and the number of correct
 % outputs (accuracy) for a full dataset

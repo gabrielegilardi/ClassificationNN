@@ -1,4 +1,4 @@
-% (c) 2020 Gabriele Gilardi
+% Copyright (c) 2020 Gabriele Gilardi
 
 % Read the data from a text file and return the input and output for 
 % the training, validation, and test datasets.

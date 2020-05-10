@@ -1,4 +1,4 @@
-% (c) 2020 Gabriele Gilardi
+% Copyright (c) 2020 Gabriele Gilardi
 %
 % ====================================================================
 % FeedForward Neural Network (FNN) for class membership identification
