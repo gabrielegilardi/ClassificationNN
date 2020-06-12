@@ -1,7 +1,8 @@
 % Copyright (c) 2020 Gabriele Gilardi
 %
 % ====================================================================
-% FeedForward Neural Network (FNN) for class membership identification
+% Multivariate Classification Using a Feed-Forward Neural Network and
+% Backpropagation.
 % ====================================================================
 %
 % Characteristics:

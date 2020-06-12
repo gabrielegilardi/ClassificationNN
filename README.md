@@ -1,4 +1,4 @@
-# Feed-Forward Neural Network (FFNN)
+# Multivariate Classification Using a Feed-Forward Neural Network and Backpropagation
 
 The code has been written in Matlab (basic version with no extra toolboxes) and tested on version 8.3 (R2014a). The main reference for the equations used are [How the backpropagation algorithm works](http://neuralnetworksanddeeplearning.com/chap2.html) and [Improving the way neural networks learn](http://neuralnetworksanddeeplearning.com/chap3.html), respectively Chapter 2 and 3 from the book [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/index.html).
 
